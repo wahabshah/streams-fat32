@@ -1,8 +1,7 @@
 
-RAMDISK
+# RAMDISK
 
-RAMFS
-----------------
+## RAMFS
 
 ```sh
 sudo mkdir -p /mnt/ramdisk_ramfs
@@ -11,8 +10,7 @@ sudo mount -t ramfs -o size=50m fat32 /mnt/ramdisk_ramfs
 sudo mount -o remount,ro /mnt/ramdisk_ramfs
 ```
 
-TMPFS
---------------
+## TMPFS
 
 ```sh
 sudo mkdir -p /mnt/ramdisk_tempfs
@@ -21,7 +19,11 @@ findmnt /mnt/ramdisk_tempfs
 
 TARGET              SOURCE FSTYPE OPTIONS
 /mnt/ramdisk_tempfs fat32  tmpfs  rw,relatime,size=51200k
+```
 
+### Simulate Read-only 
+
+```sh
 //Copy files
 sudo touch /mnt/ramdisk_tempfs/file.txt
 sudo mount -o remount,ro /mnt/ramdisk_tempfs
@@ -29,6 +31,8 @@ findmnt /mnt/ramdisk_tempfs
 df -h /mnt/ramdisk_tempfs
 sudo umount /mnt/ramdisk_tempfs
 ```
+
+### How Read-only occurs in practice
 
 ```sh
 wiesheu@wiesheu-00000053:~$ sudo mount
