@@ -1,17 +1,20 @@
 
-
 RAMDISK
 
 RAMFS
 ----------------
+
+```sh
 sudo mkdir -p /mnt/ramdisk_ramfs
 sudo mount -t ramfs -o size=50m fat32 /mnt/ramdisk_ramfs
 // Copy files
 sudo mount -o remount,ro /mnt/ramdisk_ramfs
+```
 
 TMPFS
 --------------
 
+```sh
 sudo mkdir -p /mnt/ramdisk_tempfs
 sudo mount -t tmpfs -o size=50m fat32 /mnt/ramdisk_tempfs
 findmnt /mnt/ramdisk_tempfs
@@ -25,9 +28,9 @@ sudo mount -o remount,ro /mnt/ramdisk_tempfs
 findmnt /mnt/ramdisk_tempfs
 df -h /mnt/ramdisk_tempfs
 sudo umount /mnt/ramdisk_tempfs
+```
 
-
-/*
+```sh
 wiesheu@wiesheu-00000053:~$ sudo mount
 /dev/sda1 on /mnt/usb type vfat (rw,nosuid,nodev,noexec,noatime,gid=100,fmask=0000,dmask=0000,allow_utime=0022,codepage=437,iocharset=utf8,shortname=mixed,utf8,flush,errors=remount-ro)
 
@@ -106,18 +109,18 @@ FATs differ but appear to be intact. Using first FAT.
   Truncating file to 131072 bytes.
 
 
-*/
+```
 
-/*
+```sh
 readableSteam.pipe(writeableStream, { end: true });
 wahab@deb123:/tmp/streamTest$ sudo mount -o remount,ro /mnt/ramdisk_tempfs
 wahab@deb123:/tmp/streamTest$ lsof -p $(pgrep -i node | tail -1) | grep data.txt
 node    644 wahab   22r      REG                8,1        2  5775854 /tmp/streamTest/data.txt
 
 writeableStream : Error: EROFS: read-only file system, open '/mnt/ramdisk_tempfs/data.txt'
-*/
+```
 
-/*
+```sh
 readableSteam.pipe(writeableStream, { end: false });
 wahab@deb123:/tmp/streamTest$ sudo mount -o remount,rw /mnt/ramdisk_tempfs
 wahab@deb123:/tmp/streamTest$ lsof -p $(pgrep -i node | tail -1) | grep data.txt
@@ -125,9 +128,8 @@ node    32351 wahab   23w      REG               0,58        2 12700936 /mnt/ram
 
 readableStream : end
 readableStream : close
-*/
+```
 
 
-https://www-numi.fnal.gov/offline_software/srt_public_context/WebDocs/Errors/unix_system_errors.html
-
-https://www.jamescoyle.net/how-to/943-create-a-ram-disk-in-linux
+* https://www-numi.fnal.gov/offline_software/srt_public_context/WebDocs/Errors/unix_system_errors.html
+* https://www.jamescoyle.net/how-to/943-create-a-ram-disk-in-linux
