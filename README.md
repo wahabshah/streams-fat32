@@ -1,4 +1,50 @@
 
+#
+
+```sh
+dd if=/dev/zero of=fatImage bs=1048576 count=256
+sudo mkfs.vfat -F 32 fatImage
+sudo mkdir /mnt/fat32USB
+sudo mount -o loop,rw,nosuid,nodev,noexec,noatime,gid=100,fmask=0000,dmask=0000,allow_utime=0022,codepage=437,iocharset=utf8,shortname=mixed,utf8,flush,errors=remount-ro fatImage  /mnt/fat32USB
+
+/tmp/streamTest/fatImage on /mnt/fat32USB type vfat (rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,errors=remount-ro)
+
+/tmp/streamTest/fatImage on /mnt/fat32USB type vfat (rw,nosuid,nodev,noexec,noatime,gid=100,fmask=0000,dmask=0000,allow_utime=0022,codepage=437,iocharset=utf8,shortname=mixed,utf8,flush,errors=remount-ro)
+
+/dev/sda1                on /mnt/usb      type vfat (rw,nosuid,nodev,noexec,noatime,gid=100,fmask=0000,dmask=0000,allow_utime=0022,codepage=437,iocharset=utf8,shortname=mixed,utf8,flush,errors=remount-ro)
+
+sudo mkdir /mnt/fat32USB/ThisIsALongDirectoryName
+sudo touch /mnt/fat32USB/TEST.WAV
+sudo touch /mnt/fat32USB/TEST.WAV
+sudo touch /mnt/fat32USB/TEST.WAV
+
+sudo touch /mnt/fat32USB/Test.WAV
+touch: cannot touch '/mnt/fat32USB/Test.WAV': File exists
+
+sudo touch /mnt/fat32USB/TEst.WAV
+touch: cannot touch '/mnt/fat32USB/TEst.WAV': File exists
+
+ls /mnt/fat32USB/ThisIsALongDirectoryName
+ls /mnt/fat32USB/THISIS~1
+
+sudo mount -o loop,ro,nosuid,nodev,noexec,noatime,gid=100,fmask=0000,dmask=0000,allow_utime=0022,codepage=437,iocharset=utf8,shortname=mixed,utf8,flush,errors=remount-ro fatImage  /mnt/fat32USB
+```
+
+```sh
+```
+
+DATA.TXT
+THISIS~1
+
+```sh
+sudo umount /mnt/fat32USB
+wxHexEditor fatImage
+```
+
+![alt text](./Screenshot_2020-08-29_04-44-15.png "Logo Title Text 1")
+
+https://stackoverflow.com/questions/14123302/fat32-set-long-filename-and-8-3-filename-separately
+
 # RAMDISK
 
 ## RAMFS

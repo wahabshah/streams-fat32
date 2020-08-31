@@ -2,7 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const sourcePath = path.join(__dirname,"data.txt");
-const destinationPath = path.join("/","mnt","ramdisk_tempfs","data.txt");
+const destinationPath = path.join("/","mnt","fat32USB","data.txt");
 
 
 const readableSteam = fs.createReadStream(sourcePath);
